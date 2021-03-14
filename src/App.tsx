@@ -52,7 +52,7 @@ const App: React.FC = () => {
       {!loading ? (
         <div className={styles.robotList}>
           {robotGallery.map((r) => (
-            <Robot id={r.id} name={r.name} key={r.id} />
+            <Robot id={r.id} name={r.name} email={r.email} key={r.id} />
           ))}
         </div>
       ) : (
