@@ -3,13 +3,14 @@ import styles from './App.module.css'
 import logo from './assets/images/logo.svg'
 // import robots from './mockdata/robots.json'
 import Robot from './components/Robot'
+import RobotDiscount from './components/RobotDiscount'
 import ShoppingCart from './components/ShoppingCart'
 
 const App: React.FC = () => {
   const [count, setCount] = useState<number>(0)
   const [robotGallery, setRobotGallery] = useState<any>([])
   const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string>("")
+  const [error, setError] = useState<string>('')
 
   useEffect(() => {
     document.title = `点击了${count}次`
@@ -48,12 +49,21 @@ const App: React.FC = () => {
       </button>
       <span>count:{count}</span>
       <ShoppingCart></ShoppingCart>
-      {(error !== '' && error) && <div>网络错误：{error}</div>}
+      {error !== '' && error && <div>网络错误：{error}</div>}
       {!loading ? (
         <div className={styles.robotList}>
-          {robotGallery.map((r) => (
-            <Robot id={r.id} name={r.name} email={r.email} key={r.id} />
-          ))}
+          {robotGallery.map((r, index) =>
+            index % 2 === 0 ? (
+              <RobotDiscount
+                id={r.id}
+                name={r.name}
+                email={r.email}
+                key={r.id}
+              />
+            ) : (
+              <Robot id={r.id} name={r.name} email={r.email} key={r.id} />
+            )
+          )}
         </div>
       ) : (
         <div>loading 加载中...</div>

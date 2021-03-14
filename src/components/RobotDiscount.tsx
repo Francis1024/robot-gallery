@@ -2,10 +2,17 @@ import React from 'react'
 import styles from './Robot.module.css'
 import { withAddCart, RobotProps } from './withAddCart'
 
-const Robot: React.FC<RobotProps> = ({ id, name, email, addToCart, value }) => {
+const RobotDiscount: React.FC<RobotProps> = ({
+  id,
+  name,
+  email,
+  addToCart,
+  value,
+}) => {
   return (
     <div className={styles.cardContainer}>
       <img src={`https://robohash.org/${id}`} alt="robot" />
+      <h2>打折商品</h2>
       <h2>{name}</h2>
       <p>{email}</p>
       <span>{value.username}</span>
@@ -14,4 +21,4 @@ const Robot: React.FC<RobotProps> = ({ id, name, email, addToCart, value }) => {
   )
 }
 
-export default withAddCart(Robot)
+export default withAddCart(RobotDiscount)
