@@ -41,3 +41,28 @@ export const withAddCart = (
     )
   }
 }
+
+/**
+ * 自定义添加到购物车hook
+ * @returns {function}
+ */
+
+export const useAddtoCart = () => {
+  const setState = useContext(appSetStateContext)
+
+
+  const addToCart = (id, name) => {
+    if (setState) {
+      setState((state) => {
+        return {
+          ...state,
+          shopingCart: {
+            items: [...state.shopingCart.items, { id, name }],
+          },
+        }
+      })
+    }
+  }
+
+  return addToCart
+}

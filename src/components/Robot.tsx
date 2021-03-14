@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Robot.module.css'
-import { withAddCart, RobotProps } from './withAddCart'
+import { withAddCart, RobotProps } from './AddtoCart'
 
 const Robot: React.FC<RobotProps> = ({ id, name, email, addToCart, value }) => {
   return (
