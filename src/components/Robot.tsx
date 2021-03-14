@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { appContext } from '../index'
+import { appContext, appSetStateContext } from '../AppState'
 import styles from './Robot.module.css'
 
 interface RobotProps {
@@ -10,10 +10,22 @@ interface RobotProps {
 
 const Robot: React.FC<RobotProps> = ({ id, name, email }) => {
   const value = useContext(appContext)
+  const setState = useContext(appSetStateContext)
+
+  const addCart = () => {
+    if (setState) {
+      setState((state) => {
+        return {
+          ...state,
+          shopingCart: {
+            items: [...state.shopingCart.items, { id, name }],
+          },
+        }
+      })
+    }
+  }
 
   return (
-
-    
     // <appContext.Consumer>
     //   {(value) => {
     //     return (
@@ -32,6 +44,7 @@ const Robot: React.FC<RobotProps> = ({ id, name, email }) => {
       <h2>{name}</h2>
       <p>{email}</p>
       <span>{value.username}</span>
+      <button onClick={addCart}>添加到购物车</button>
     </div>
   )
 }
